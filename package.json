@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tanaymittal25/ProfileInfo/issues"
   },
-  "homepage": "https://github.com/tanaymittal25/ProfileInfo#readme"
+  "homepage": "https://github.com/tanaymittal25/ProfileInfo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
