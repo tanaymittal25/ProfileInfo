@@ -2,10 +2,25 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressHbs = require('express-handlebars');
 
 const config = require('./config/secret');
 
 app = express();
+
+const http = require('http').Server(app);
+
+app.engine('.hbs', expressHbs({
+    defaultLayout: 'layout',
+    extname: '.hbs'
+}));
+app.set('view engine', 'hbs');
+app.use(express.static(__dirname + '/public'));
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 mongoose.connect(config.Database, {useNewUrlParser: true}, (err) => {
     if(err)
