@@ -22,11 +22,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+const mainRoute = require('./routes/main');
+app.use(mainRoute);
+
 mongoose.connect(config.Database, {useNewUrlParser: true}, (err) => {
     if(err)
         console.log(`Error with DB`);
     console.log(`Connected to Database`);
-})
+});
 
 app.listen(config.PORT, (err) => {
     if(err)
