@@ -1,18 +1,20 @@
 const router = require('express').Router();
 const async = require('async');
 const passport = require('passport');
+const passportConfig = require('../config/passport');
 
 const userModel = require('../models/user');
 
 router.route('/sign_up')
     .get((req, res, next) => {
-        res.render('accounts/signup');
+        res.render('accounts/signup', { message: req.flash('errors')});
     })
 
     .post((req, res, next) => {
         userModel.findOne({email: req.body.Email}, function(err, existingUser) {
             if(existingUser)
             {
+                req.flash('errors', 'Account Exists');
                 return res.redirect('/signup');
             }
             else
