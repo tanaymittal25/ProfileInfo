@@ -22,7 +22,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 const mainRoute = require('./routes/main');
+const userRoute = require('./routes/user');
 app.use(mainRoute);
+app.use(userRoute);
 
 mongoose.connect(config.Database, {useNewUrlParser: true}, (err) => {
     if(err)
