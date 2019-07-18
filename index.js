@@ -23,17 +23,19 @@ app.use(bodyParser.urlencoded({
 
 const mainRoute = require('./routes/main');
 const userRoute = require('./routes/user');
+const apiRoute = require('./routes/route');
 app.use(mainRoute);
 app.use(userRoute);
+app.use(apiRoute);
 
-mongoose.connect(config.Database, {useNewUrlParser: true}, (err) => {
-    if(err)
+mongoose.connect(config.Database, { useNewUrlParser: true }, (err) => {
+    if (err)
         console.log(`Error with DB`);
     console.log(`Connected to Database`);
 });
 
 app.listen(config.PORT, (err) => {
-    if(err)
+    if (err)
         console.log(`Error`);
     console.log(`Running on Port ${config.PORT}`);
 });
